@@ -6,7 +6,7 @@ const upperCaseCheck = document.querySelector('#uppercaseCharacter');
 const numberCheck = document.querySelector('#numberCharacter');
 const symbolCheck = document.querySelector('#symbolCharacter');
 const generateBtn = document.querySelector('.btn-generate');
-
+const successMsg = document.querySelector('.success-msg')
 const getLowerCharacters = () => {
     const characterString = String.fromCharCode(Math.floor(Math.random() * 26) + 97);
     return characterString;
@@ -66,3 +66,15 @@ generateBtn.addEventListener('click', () => {
 
     result.value = generatepassword(length, lowerCase, upperCase, number, symbol);
 })
+const copyPassword = () => {
+    result.select();
+    document.execCommand('copy');
+
+    successMsg.style.opacity = '1';
+    // console.log(result.value);
+    
+    setTimeout(() => {
+        successMsg.style.opacity='0';
+    },1000)
+}
+btnCopy.addEventListener('click',copyPassword);
